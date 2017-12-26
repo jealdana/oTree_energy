@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # this is for Heroku and other servers.
 # Locally, you should install requirements_base.txt
-=======
-# this is for Heroku and other servers.
-# Locally, you should install requirements_base.txt
->>>>>>> refs/remotes/origin/master
-=======
-# this is for Heroku and other servers.
-# Locally, you should install requirements_base.txt
->>>>>>> refs/remotes/origin/master
 -r requirements_server.txt
