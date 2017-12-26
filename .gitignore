@@ -1,0 +1,37 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+venv
+*.pyc
+staticfiles
+./db.sqlite3
+.idea
+*~
+*.sqlite3
+_coverage_results
+_static_root
+_bots*s
+=======
+venv
+*.pyc
+staticfiles
+./db.sqlite3
+.idea
+*~
+*.sqlite3
+_coverage_results
+_static_root
+_bots*s
+>>>>>>> refs/remotes/origin/master
+=======
+venv
+*.pyc
+staticfiles
+./db.sqlite3
+.idea
+*~
+*.sqlite3
+_coverage_results
+_static_root
+_bots*s
+>>>>>>> refs/remotes/origin/master
+__temp*
