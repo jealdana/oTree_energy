@@ -11,8 +11,8 @@ This is a one-period public goods game with 3 players.
 
 class Constants(BaseConstants):
     name_in_url = 'public_goods'
-    players_per_group = 3
-    num_rounds = 1
+    players_per_group = 2
+    num_rounds = 2
 
     instructions_template = 'public_goods/Instructions.html'
 
@@ -36,6 +36,11 @@ class Subsession(BaseSubsession):
                 'min_contribution': '(no data)',
                 'max_contribution': '(no data)',
             }
+    def creating_session(self):
+        if self.round_number == 1:
+            treatments = itertools.cycle(['t1', 't2', 't3'])
+            for p in self.get_players():
+                p.participant.vars['treatment'] = next(treatments)
 
 
 class Group(BaseGroup):
@@ -55,3 +60,4 @@ class Player(BasePlayer):
         min=0, max=Constants.endowment,
         doc="""The amount contributed by the player""",
     )
+    treatment = models.CharField()
