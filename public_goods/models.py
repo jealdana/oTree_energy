@@ -37,7 +37,7 @@ class Subsession(BaseSubsession):
                 'max_contribution': '(no data)',
             }
     def creating_session(self):
-        treatments = itertools.cycle(['t1', 't2', 't3'])
+        treatments = itertools.cycle(['t1', 't2'])
         for p in self.get_players():
             if 'treatment' in self.session.config:
                 # demo mode
