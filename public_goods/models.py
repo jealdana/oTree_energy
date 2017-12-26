@@ -37,14 +37,13 @@ class Subsession(BaseSubsession):
                 'max_contribution': '(no data)',
             }
     def creating_session(self):
-        if 'treatment' in self.session.config:
-            # demo mode
-            for p in self.get_players():
-                p.participant.vars['treatment'] = self.session.config['treatment']
-        elif self.round_number == 1:
-            treatments = itertools.cycle(['t1', 't2', 't3'])
-            for p in self.get_players():
-                p.participant.vars['treatment'] = next(treatments)
+        treatments = itertools.cycle(['t1', 't2', 't3'])
+        for p in self.get_players():
+            if 'treatment' in self.session.config:
+                # demo mode
+                p.treat = self.session.config['treatment']
+            else: #self.round_number == 1:
+                p.participant.vars['treat'] = next(treatments)
 
 
 
@@ -65,4 +64,4 @@ class Player(BasePlayer):
         min=0, max=Constants.endowment,
         doc="""The amount contributed by the player""",
     )
-    treatment = models.CharField()
+    treat = models.CharField()

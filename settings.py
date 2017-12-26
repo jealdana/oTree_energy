@@ -111,19 +111,19 @@ SESSION_CONFIGS = [
         'display_name': "Public Goods t1",
         'num_demo_participants': 2,
         'app_sequence': ['public_goods', 'payment_info'],
-        'treatment' : 't1'
+        'treatment' : 't1',
     }, {
         'name': 'public_goods_t2',
         'display_name': "Public Goods t2",
         'num_demo_participants': 2,
         'app_sequence': ['public_goods', 'payment_info'],
-        'treatment' : 't2'
+        'treatment' : 't2',
     }, {
         'name': 'public_goods_t3',
         'display_name': "Public Goods t3",
         'num_demo_participants': 2,
         'app_sequence': ['public_goods', 'payment_info'],
-        'treatment' : 't3'
+        'treatment' : 't3',
     }, {
         'name': 'bargaining',
         'display_name': "Bargaining Game",
