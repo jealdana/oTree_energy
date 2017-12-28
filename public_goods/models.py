@@ -17,7 +17,7 @@ class Constants(BaseConstants):
     instructions_template = 'public_goods/Instructions.html'
 
     # """Amount allocated to each player"""
-    endowment = c(100)
+    endowment = c(10)
     multiplier = 2
 
 
@@ -37,12 +37,12 @@ class Subsession(BaseSubsession):
                 'max_contribution': '(no data)',
             }
     def creating_session(self):
-        treatments = itertools.cycle(['t1', 't2'])
+        treatments = itertools.cycle(['control', 't1', 't2'])
         for p in self.get_players():
-            if 'treatment' in self.session.config:
+            if 'treatment' in self.session.config: # if treatment var is set in setting.py, then take that value
                 # demo mode
                 p.treat = self.session.config['treatment']
-            else: #self.round_number == 1:
+            else: #assign equally over all treatments
                 p.participant.vars['treat'] = next(treatments)
 
 

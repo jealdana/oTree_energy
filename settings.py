@@ -129,6 +129,7 @@ SESSION_CONFIGS = [
         'display_name': "Bargaining Game",
         'num_demo_participants': 2,
         'app_sequence': ['bargaining', 'payment_info'],
+        'use_browser_bots': True,
     }
 ]
 #
