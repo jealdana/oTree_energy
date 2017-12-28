@@ -6,6 +6,7 @@ from .models import Constants
 
 class Introduction(Page):
     """Description of the game: How to play and returns expected"""
+    body_text = "Introduction text."
     pass
 
 
@@ -33,6 +34,18 @@ class Results(Page):
             'total_earnings': self.group.total_contribution * Constants.multiplier,
         }
 
+class Results_control(Page):
+    def is_displayed(self):
+        if self.player.participant.treatment == 'control':
+            return True
+class Results_t1(Page):
+    def is_displayed(self):
+        if self.player.participant.treatment == 't1':
+            return True
+class Results_t2(Page):
+    def is_displayed(self):
+        if self.player.participant.treatment == 't2':
+            return True
 
 page_sequence = [
     Introduction,

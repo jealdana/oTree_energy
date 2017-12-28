@@ -12,13 +12,14 @@ This is a one-period public goods game with 3 players.
 class Constants(BaseConstants):
     name_in_url = 'public_goods'
     players_per_group = 2
-    num_rounds = 2
+    num_rounds = 1
 
     instructions_template = 'public_goods/Instructions.html'
+    results_template = 'public_goods/Results_control.html'
 
     # """Amount allocated to each player"""
     endowment = c(10)
-    multiplier = 2
+    multiplier = 1
 
 
 class Subsession(BaseSubsession):
@@ -41,7 +42,7 @@ class Subsession(BaseSubsession):
         for p in self.get_players():
             if 'treatment' in self.session.config: # if treatment var is set in setting.py, then take that value
                 # demo mode
-                p.treat = self.session.config['treatment']
+                p.participant.vars['treat'] = self.session.config['treatment']
             else: #assign equally over all treatments
                 p.participant.vars['treat'] = next(treatments)
 

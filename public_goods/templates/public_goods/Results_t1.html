@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Introduction
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.instructions_template %}
+    <p>Thanks for your contribution to the group goal last round! [Include only if met previous goal].</p>
+
+    {% next_button %}
+
+{% endblock %}
