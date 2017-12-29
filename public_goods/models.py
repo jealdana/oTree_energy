@@ -4,16 +4,10 @@ from otree.api import (
 )
 import random
 import itertools
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e750dd68455c0da5668e7c8ece402b7257ce9629
 
->>>>>>> e750dd68455c0da5668e7c8ece402b7257ce9629
 doc = """
-    This is a one-period public goods game with 3 players.
-    """
+        This is a one-period public goods game with 3 players.
+      """
 
 class Constants(BaseConstants):
     name_in_url = 'public_goods'
@@ -43,31 +37,13 @@ class Subsession(BaseSubsession):
                 'max_contribution': '(no data)',
             }
     def creating_session(self):
-        #if self.round_number == 1:
-        #    treatments = itertools.cycle(['control', 't1', 't2'])
-        #    for p in self.get_players():
-        #        if 'treatment' in self.session.config: # if treatment var is set in setting.py, then take that value
-        #            # demo mode
-        #            p.participant.vars['treat'] = self.session.config['treatment']
-        #        else: #assign equally over all treatments
-        #            p.participant.vars['treat'] = next(treatments)
-        #treatments = itertools.cycle(['control', 't1', 't2'])
         treatments = itertools.cycle(['control', 't1', 't2'])
-<<<<<<< HEAD
-        if self.round_number == 1:
-            for g in self.get_groups():
-                treatment = next(treatments)
-                for p in g.get_players():
-                    p.participant.vars['treat'] = treatment
-                    p.treat = treatment
-=======
         for p in self.get_players():
             if 'treatment' in self.session.config: # if treatment var is set in setting.py, then take that value
                 # demo mode
                 p.participant.vars['treat'] = self.session.config['treatment']
             else: #assign equally over all treatments
                 p.participant.vars['treat'] = next(treatments)
->>>>>>> e750dd68455c0da5668e7c8ece402b7257ce9629
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
@@ -80,9 +56,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    treat = models.CharField()
     contribution = models.CurrencyField(
         min=0, max=Constants.endowment,
         doc="""The amount contributed by the player""",
     )
-
+    treat = models.CharField()
