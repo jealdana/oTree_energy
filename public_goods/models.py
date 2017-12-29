@@ -6,9 +6,8 @@ import random
 import itertools
 
 doc = """
-This is a one-period public goods game with 3 players.
-"""
-
+    This is a one-period public goods game with 3 players.
+    """
 
 class Constants(BaseConstants):
     name_in_url = 'public_goods'
@@ -18,10 +17,9 @@ class Constants(BaseConstants):
     instructions_template = 'public_goods/Instructions.html'
     results_template = 'public_goods/Results_control.html'
 
-    # """Amount allocated to each player"""
+    """Amount allocated to each player"""
     endowment = c(10)
     multiplier = 1
-
 
 class Subsession(BaseSubsession):
     def vars_for_admin_report(self):
@@ -47,13 +45,9 @@ class Subsession(BaseSubsession):
             else: #assign equally over all treatments
                 p.participant.vars['treat'] = next(treatments)
 
-
-
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
-
     individual_share = models.CurrencyField()
-
     def set_payoffs(self):
         self.total_contribution = sum([p.contribution for p in self.get_players()])
         self.individual_share = self.total_contribution * Constants.multiplier / Constants.players_per_group

@@ -5,25 +5,20 @@ from otree.api import (
 import random
 
 doc = """
-This bargaining game involves 2 players. Each demands for a portion of some
-available amount. If the sum of demands is no larger than the available
-amount, both players get demanded portions. Otherwise, both get nothing.
+    This bargaining game involves 2 players. Each demands for a portion of some
+    available amount. If the sum of demands is no larger than the available
+    amount, both players get demanded portions. Otherwise, both get nothing.
 """
-
 
 class Constants(BaseConstants):
     name_in_url = 'bargaining'
     players_per_group = 2
     num_rounds = 1
-
     instructions_template = 'bargaining/Instructions.html'
-
     amount_shared = c(100)
-
 
 class Subsession(BaseSubsession):
     pass
-
 
 class Group(BaseGroup):
     def set_payoffs(self):
@@ -35,7 +30,6 @@ class Group(BaseGroup):
         else:
             for p in players:
                 p.payoff = c(0)
-
 
 class Player(BasePlayer):
     request_amount = models.CurrencyField(

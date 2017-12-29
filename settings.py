@@ -1,10 +1,7 @@
 import os
 from os import environ
-
 import dj_database_url
-
 import otree.settings
-
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 

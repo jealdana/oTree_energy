@@ -5,20 +5,15 @@ from . import views
 from ._builtin import Bot
 from .models import Constants
 
-
 class PlayerBot(Bot):
-
     cases = ['basic', 'min', 'max']
-
     def play_round(self):
         case = self.case
         yield (views.Introduction)
-
-        if case == 'basic':
-            if self.player.id_in_group == 1:
-                for invalid_contribution in [-1, 101]:
-                    yield SubmissionMustFail(views.Contribute, {
-                        'contribution': invalid_contribution})
+        if case == 'basic' and self.player.id_in_group == 1:
+            for invalid_contribution in [-1, 101]:
+                yield SubmissionMustFail(views.Contribute, {
+                    'contribution': invalid_contribution})
 
         contribution = {
             'min': 0,
@@ -27,15 +22,12 @@ class PlayerBot(Bot):
         }[case]
 
         yield (views.Contribute, {"contribution": contribution})
-
         yield (views.Results)
 
+        expected = {"min":100, "max":200}
         if self.player.id_in_group == 1:
-
-            if case == 'min':
-                expected_payoff = 100
-            elif case == 'max':
-                expected_payoff = 200
+            if case == "min" or case == "max":
+                expected_payoff = expected[case]
             else:
                 expected_payoff = 150
             assert self.player.payoff == expected_payoff
