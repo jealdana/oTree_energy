@@ -36,20 +36,21 @@ class Results(Page):
 
 class Results_control(Page):
     def is_displayed(self):
-        if self.player.participant.treatment == 'control':
+        if self.participant.vars['treat'] == 'control':
             return True
 class Results_t1(Page):
     def is_displayed(self):
-        if self.player.participant.treatment == 't1':
+        if self.participant.vars['treat'] == 't1':
             return True
 class Results_t2(Page):
     def is_displayed(self):
-        if self.player.participant.treatment == 't2':
+        if self.participant.vars['treat'] == 't2':
             return True
 
 page_sequence = [
-    Introduction,
     Contribute,
     ResultsWaitPage,
-    Results
+    Results_control,
+    Results_t1,
+    Results_t2
 ]

@@ -1,1 +1,1 @@
-# oTree_energy
+# Energy Project

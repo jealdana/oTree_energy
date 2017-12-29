@@ -1,10 +1,7 @@
 import os
 from os import environ
-
 import dj_database_url
-
 import otree.settings
-
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -106,6 +103,12 @@ SESSION_CONFIGS = [
     #     'num_demo_participants': ...,
     #     'app_sequence': ['...'],
     # }
+        {
+            'name': 'public_goods',
+            'display_name': "Public Goods general",
+            'num_demo_participants': 2,
+            'app_sequence': ['public_goods'],
+        },
         {
             'name': 'public_goods_t1',
             'display_name': "Public Goods t1",

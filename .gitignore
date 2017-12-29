@@ -35,3 +35,5 @@ _static_root
 _bots*s
 >>>>>>> refs/remotes/origin/master
 __temp*
+__pycache__/*
+*/__pycache__/*

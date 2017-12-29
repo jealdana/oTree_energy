@@ -3,7 +3,6 @@ from . import views
 from ._builtin import Bot
 from .models import Constants
 
-
 class PlayerBot(Bot):
 
     cases = [
@@ -12,7 +11,6 @@ class PlayerBot(Bot):
     ]
 
     def play_round(self):
-
         # start
         yield (views.Introduction)
 
