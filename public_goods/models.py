@@ -5,7 +5,10 @@ from otree.api import (
 import random
 import itertools
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e750dd68455c0da5668e7c8ece402b7257ce9629
 
 >>>>>>> e750dd68455c0da5668e7c8ece402b7257ce9629
 doc = """
@@ -50,12 +53,21 @@ class Subsession(BaseSubsession):
         #            p.participant.vars['treat'] = next(treatments)
         #treatments = itertools.cycle(['control', 't1', 't2'])
         treatments = itertools.cycle(['control', 't1', 't2'])
+<<<<<<< HEAD
         if self.round_number == 1:
             for g in self.get_groups():
                 treatment = next(treatments)
                 for p in g.get_players():
                     p.participant.vars['treat'] = treatment
                     p.treat = treatment
+=======
+        for p in self.get_players():
+            if 'treatment' in self.session.config: # if treatment var is set in setting.py, then take that value
+                # demo mode
+                p.participant.vars['treat'] = self.session.config['treatment']
+            else: #assign equally over all treatments
+                p.participant.vars['treat'] = next(treatments)
+>>>>>>> e750dd68455c0da5668e7c8ece402b7257ce9629
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
