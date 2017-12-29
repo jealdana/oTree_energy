@@ -2,12 +2,14 @@
 {% load staticfiles otree %}
 
 {% block title %}
-    Contribute
+    Survey
 {% endblock %}
 
 {% block content %}
 
-    {% formfield player.contribution label="How much will you contribute to the project (from 0 to 10)?" %}
+    {% formfield player.q1 label="Enter your name" %}
+
+    {% formfield player.q2 label="Enter your age" %}
 
     {% next_button %}
 

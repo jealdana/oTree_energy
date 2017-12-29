@@ -12,7 +12,7 @@ doc = """
 class Constants(BaseConstants):
     name_in_url = 'public_goods'
     players_per_group = 2
-    num_rounds = 1
+    num_rounds = 2
 
     instructions_template = 'public_goods/Instructions.html'
     results_template = 'public_goods/Results_control.html'
@@ -44,6 +44,9 @@ class Subsession(BaseSubsession):
                 for p in g.get_players():
                     p.participant.vars['treat'] = treatment
                     p.treat = treatment
+        if self.round_number > 1 :
+            for p in self.get_players():
+                p.treat = p.participant.vars['treat']
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()

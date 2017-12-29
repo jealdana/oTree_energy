@@ -5,12 +5,11 @@ from otree.api import (
 import random
 
 doc = """
-    This application provides a webpage instructing participants how to get paid.
-    Examples are given for the lab and Amazon Mechanical Turk (AMT).
+    This application provides introductions for the experiment.
 """
 
 class Constants(BaseConstants):
-    name_in_url = 'payment_info'
+    name_in_url = 'exp_info'
     players_per_group = None
     num_rounds = 1
 
@@ -21,4 +20,6 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    pass
+    q1 = models.CharField()
+    q2 = models.IntegerField()
+
