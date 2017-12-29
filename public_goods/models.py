@@ -3,6 +3,7 @@ from otree.api import (
     Currency as c, currency_range
 )
 import random
+import itertools
 
 doc = """
 This is a one-period public goods game with 3 players.
