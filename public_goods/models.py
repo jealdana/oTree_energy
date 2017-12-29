@@ -38,12 +38,20 @@ class Subsession(BaseSubsession):
             }
     def creating_session(self):
         treatments = itertools.cycle(['control', 't1', 't2'])
+        if self.round_number == 1:
+            for g in self.get_groups():
+                treatment = next(treatments)
+                for p in g.get_players():
+                    p.participant.vars['treat'] = treatment
+                    p.treat = treatment
+        """
         for p in self.get_players():
             if 'treatment' in self.session.config: # if treatment var is set in setting.py, then take that value
                 # demo mode
                 p.participant.vars['treat'] = self.session.config['treatment']
             else: #assign equally over all treatments
                 p.participant.vars['treat'] = next(treatments)
+        """
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
@@ -53,7 +61,6 @@ class Group(BaseGroup):
         self.individual_share = self.total_contribution * Constants.multiplier / Constants.players_per_group
         for p in self.get_players():
             p.payoff = (Constants.endowment - p.contribution) + self.individual_share
-
 
 class Player(BasePlayer):
     contribution = models.CurrencyField(
