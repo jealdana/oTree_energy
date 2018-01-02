@@ -10,7 +10,7 @@ doc = """
 
 class Constants(BaseConstants):
     name_in_url = 'exp_info'
-    players_per_group = None
+    players_per_group = 2
     num_rounds = 1
 
 class Subsession(BaseSubsession):
@@ -21,5 +21,6 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     q1 = models.CharField()
-    q2 = models.IntegerField()
+    q2 = models.IntegerField(choices=[1, 2, 3],
+        widget=widgets.RadioSelect)
 
