@@ -11,8 +11,8 @@ doc = """
 
 class Constants(BaseConstants):
     name_in_url = 'public_goods'
-    players_per_group = 2
-    num_rounds = 2
+    players_per_group = 25
+    num_rounds = 12
 
     instructions_template = 'public_goods/Instructions.html'
     results_template = 'public_goods/Results_control.html'
@@ -49,7 +49,7 @@ class Subsession(BaseSubsession):
                 p.treat = p.participant.vars['treat']
 
 class Group(BaseGroup):
-    total_contribution = models.CurrencyField()
+    total_contribution = models.CurrencyField() #
     individual_share = models.CurrencyField()
     def set_payoffs(self):
         self.total_contribution = sum([p.contribution for p in self.get_players()])
@@ -63,3 +63,5 @@ class Player(BasePlayer):
         doc="""The amount contributed by the player""",
     )
     treat = models.CharField()
+    # Savings
+    # consumptions
