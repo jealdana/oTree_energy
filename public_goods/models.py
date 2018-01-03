@@ -6,35 +6,36 @@ import random
 import itertools
 
 doc = """
-        This is a one-period public goods game with 3 players.
+        This is an energy game.
       """
 
 class Constants(BaseConstants):
     name_in_url = 'public_goods'
-    players_per_group = 25
-    num_rounds = 12
+    players_per_group = 2
+    num_rounds = 2
 
     instructions_template = 'public_goods/Instructions.html'
     results_template = 'public_goods/Results_control.html'
 
     """Amount allocated to each player"""
     endowment = c(10)
+    max_savings = c(5)
     multiplier = 1
 
 class Subsession(BaseSubsession):
     def vars_for_admin_report(self):
-        contributions = [p.contribution for p in self.get_players() if p.contribution != None]
-        if contributions:
+        savings_session = [p.savings for p in self.get_players() if p.savings != None]
+        if savings_session:
             return {
-                'avg_contribution': sum(contributions)/len(contributions),
-                'min_contribution': min(contributions),
-                'max_contribution': max(contributions),
+                'avg_saving': sum(savings_session)/len(savings_session),
+                'min_saving': min(savings_session),
+                'max_saving': max(savings_session),
             }
         else:
             return {
-                'avg_contribution': '(no data)',
-                'min_contribution': '(no data)',
-                'max_contribution': '(no data)',
+                'avg_saving': '(no data)',
+                'min_saving': '(no data)',
+                'max_saving': '(no data)',
             }
     def creating_session(self):
         treatments = itertools.cycle(['control', 't1', 't2'])
@@ -49,19 +50,18 @@ class Subsession(BaseSubsession):
                 p.treat = p.participant.vars['treat']
 
 class Group(BaseGroup):
-    total_contribution = models.CurrencyField() #
-    individual_share = models.CurrencyField()
+    total_savings = models.CurrencyField() #
+    individual_savings_share = models.CurrencyField()
     def set_payoffs(self):
-        self.total_contribution = sum([p.contribution for p in self.get_players()])
-        self.individual_share = self.total_contribution * Constants.multiplier / Constants.players_per_group
+        self.total_savings = sum([p.savings for p in self.get_players()])
+        self.individual_savings_share = self.total_savings * Constants.multiplier / Constants.players_per_group
         for p in self.get_players():
-            p.payoff = (Constants.endowment - p.contribution) + self.individual_share
+            p.payoff = (Constants.endowment - p.savings) + self.individual_savings_share
 
 class Player(BasePlayer):
-    contribution = models.CurrencyField(
+    treat = models.CharField()
+    consumption = models.CurrencyField(
         min=0, max=Constants.endowment,
         doc="""The amount contributed by the player""",
     )
-    treat = models.CharField()
-    # Savings
-    # consumptions
+    savings = models.CurrencyField(min=0, max=Constants.max_savings)

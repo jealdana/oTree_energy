@@ -14,9 +14,9 @@ class Contribute(Page):
     """Player: Choose how much to contribute"""
 
     form_model = models.Player
-    form_fields = ['contribution']
+    form_fields = ['consumption','savings']
 
-    timeout_submission = {'contribution': c(Constants.endowment / 2)}
+    timeout_submission = {'consumption': c(Constants.endowment / 2)}
 
 
 class ResultsWaitPage(WaitPage):
