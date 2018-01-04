@@ -57,6 +57,7 @@ class Subsession(BaseSubsession):
                 p.treat = p.participant.vars['treat']
 
 
+
 class Group(BaseGroup):
     com_goal = models.FloatField(min=0, max=1)
     total_savings = models.CurrencyField()
@@ -75,6 +76,10 @@ class Group(BaseGroup):
 
 
 
+
+
+
+
 class Player(BasePlayer):
     treat = models.CharField(doc="Treatment of each player")
     consumption = models.CurrencyField(
@@ -83,3 +88,4 @@ class Player(BasePlayer):
     )
     savings = models.CurrencyField(min=0, max=Constants.max_savings, doc="Savings by each player")
     financial_reward = models.FloatField(min=0)
+    last_savings = models.CurrencyField()
