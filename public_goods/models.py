@@ -69,12 +69,13 @@ class Group(BaseGroup):
         if self.com_goal > 0:
             if self.individual_savings_share >= self.com_goal:
                 for p in self.get_players():
-                    p.financial_reward = (Constants.endowment - p.savings).to_real_world_currency(self.session)
+                    p.financial_reward = (Constants.endowment - p.consumption).to_real_world_currency(self.session)
             else:
                 for p in self.get_players():
                     p.financial_reward = p.consumption.to_real_world_currency(self.session)
 
-
+# finacial with group
+# reward group (1 has nothing ,1 treatment any group reward, 1 emotional reward, group savings x3 and distributed equally,)
 
 
 
