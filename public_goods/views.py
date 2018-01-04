@@ -14,7 +14,7 @@ class Contribute(Page):
     """Player: Choose how much to contribute"""
 
     form_model = models.Player
-    form_fields = ['consumption','savings']
+    form_fields = ['consumption', 'savings']
 
     timeout_submission = {'consumption': c(Constants.endowment / 2)}
 
@@ -38,6 +38,7 @@ class Results_control(Page):
     def is_displayed(self):
         if self.participant.vars['treat'] == 'control':
             return True
+
 class Results_t1(Page):
     def is_displayed(self):
         if self.participant.vars['treat'] == 't1':

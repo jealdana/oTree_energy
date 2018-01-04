@@ -6,7 +6,7 @@ import random
 import itertools
 
 doc = """
-        This is an energy game.
+        Public good game section (Rounds and feedback).
       """
 
 class Constants(BaseConstants):
@@ -22,7 +22,9 @@ class Constants(BaseConstants):
     max_savings = c(5)
     multiplier = 1
 
+
 class Subsession(BaseSubsession):
+
     def vars_for_admin_report(self):
         savings_session = [p.savings for p in self.get_players() if p.savings != None]
         if savings_session:
@@ -37,31 +39,47 @@ class Subsession(BaseSubsession):
                 'min_saving': '(no data)',
                 'max_saving': '(no data)',
             }
+
     def creating_session(self):
+        # self.Constants.endowment = self.session.config['endowment']
         treatments = itertools.cycle(['control', 't1', 't2'])
+        for g in self.get_groups():
+            g.com_goal = self.session.config['community_goal_decimal']
         if self.round_number == 1:
             for g in self.get_groups():
                 treatment = next(treatments)
+
                 for p in g.get_players():
                     p.participant.vars['treat'] = treatment
                     p.treat = treatment
-        if self.round_number > 1 :
+        if self.round_number > 1:
             for p in self.get_players():
                 p.treat = p.participant.vars['treat']
 
+
 class Group(BaseGroup):
-    total_savings = models.CurrencyField() #
-    individual_savings_share = models.CurrencyField()
+    com_goal = models.FloatField(min=0, max=1)
+    total_savings = models.CurrencyField()
+    individual_savings_share = models.FloatField()
+
     def set_payoffs(self):
-        self.total_savings = sum([p.savings for p in self.get_players()])
-        self.individual_savings_share = self.total_savings * Constants.multiplier / Constants.players_per_group
-        for p in self.get_players():
-            p.payoff = (Constants.endowment - p.savings) + self.individual_savings_share
+        self.total_savings = sum([p.savings for p in self.get_players()]) # C:1 S:4, C:1 S:1, TS:5 SS:5/20 F:
+        self.individual_savings_share = self.total_savings / (Constants.players_per_group * Constants.endowment)
+        if self.com_goal > 0:
+            if self.individual_savings_share >= self.com_goal:
+                for p in self.get_players():
+                    p.financial_reward = (Constants.endowment - p.savings).to_real_world_currency(self.session)
+            else:
+                for p in self.get_players():
+                    p.financial_reward = p.consumption.to_real_world_currency(self.session)
+
+
 
 class Player(BasePlayer):
-    treat = models.CharField()
+    treat = models.CharField(doc="Treatment of each player")
     consumption = models.CurrencyField(
         min=0, max=Constants.endowment,
-        doc="""The amount contributed by the player""",
+        doc="Consumption by each player"
     )
-    savings = models.CurrencyField(min=0, max=Constants.max_savings)
+    savings = models.CurrencyField(min=0, max=Constants.max_savings, doc="Savings by each player")
+    financial_reward = models.FloatField(min=0)

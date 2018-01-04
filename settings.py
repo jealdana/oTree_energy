@@ -54,7 +54,7 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
-
+POINTS_DECIMAL_PLACES = 2
 
 # e.g. en, de, fr, it, ja, zh-hans
 # see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
@@ -66,7 +66,7 @@ INSTALLED_APPS = ['otree']
 # SENTRY_DSN = ''
 
 DEMO_PAGE_INTRO_HTML = """
-oTree games
+Purdue University
 """
 
 mturk_hit_settings = {
@@ -89,8 +89,8 @@ mturk_hit_settings = {
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 0.000,
-    'participation_fee': 0.00,
+    'real_world_currency_per_point': 0.250,
+    'participation_fee': 0.000,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,
 }
@@ -104,10 +104,13 @@ SESSION_CONFIGS = [
     #     'app_sequence': ['...'],
     # }
         {
-            'name': 'public_goods',
-            'display_name': "Public Goods general",
+            'name': 'base_game',
+            'display_name': "Base Game test case",
             'num_demo_participants': 4,
-            'app_sequence': ['payment_info', 'public_goods'],
+            'endowment': 10,
+            'community_goal_decimal': .01,
+            'app_sequence': ['survey', 'public_goods'],
+            'doc': """community_goal_decimal limits: [0,1]"""
         },
 ]
 #

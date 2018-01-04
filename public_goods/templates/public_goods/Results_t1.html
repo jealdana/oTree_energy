@@ -8,7 +8,8 @@
 {% block content %}
 
     <p>Treatment 1: Thanks for your contribution to the group goal last round! [Include only if met previous goal].</p>
-
+    <p>Your name is {{ player.financial_reward }}.</p>
+    <p>Your name is {{ player.consumption|c}}.</p>
     {% next_button %}
 
 {% endblock %}

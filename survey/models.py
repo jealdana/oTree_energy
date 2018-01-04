@@ -9,7 +9,7 @@ doc = """
 """
 
 class Constants(BaseConstants):
-    name_in_url = 'exp_info'
+    name_in_url = 'instructions_n_survey'
     players_per_group = 2
     num_rounds = 1
 
@@ -20,7 +20,6 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    q1 = models.CharField()
-    q2 = models.IntegerField(choices=[1, 2, 3],
-        widget=widgets.RadioSelect)
+    q1 = models.CharField(doc="Question 1")
+    q2 = models.IntegerField(doc="Question 2")
 
