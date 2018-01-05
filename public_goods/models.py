@@ -89,6 +89,6 @@ class Player(BasePlayer):
         min=0, max=Constants.endowment,
         doc="Consumption by each player"
     )
-    savings = models.CurrencyField(min=0, max=Constants.max_savings, doc="Savings by each player")
+    savings = models.CurrencyField(min=0, max=Constants.max_savings, doc="Savings by each player",choices=[c(0), c(2), c(4)])
     financial_reward = models.FloatField(min=0)
     last_savings = models.CurrencyField()
