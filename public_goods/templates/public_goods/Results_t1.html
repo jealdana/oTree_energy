@@ -16,12 +16,11 @@
             <tr><td></td><td>{{ p.savings|c }}</td></tr>
         {% endfor %}
 
-        <tr><td>Total savings:</td><td>{{ group.total_savings }}</td></tr>
+        <tr><td>Group Total savings:</td><td>{{ group.total_savings }}</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Total earnings from the project:</td><td>{{ group.individual_savings_share }}</td></tr>
-        <tr><td>Your earnings from the project:</td><td>{{ player.financial_reward }}</td></tr>
+        <tr><td>Total earnings from the project:</td><td>{{ group.individual_savings_share }}</td><td> Fraction of total points collected </td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 

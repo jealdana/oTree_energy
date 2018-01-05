@@ -69,7 +69,7 @@ class Group(BaseGroup):
         if self.com_goal > 0:
             if self.individual_savings_share >= self.com_goal:
                 for p in self.get_players():
-                    p.financial_reward = p.consumption.to_real_world_currency(self.session) + self.individual_savings_share.to_real_world_currency(self.session)
+                    p.financial_reward = p.consumption.to_real_world_currency(self.session) + (self.total_savings / Constants.players_per_group).to_real_world_currency(self.session)
             else:
                 for p in self.get_players():
                     p.financial_reward = p.consumption.to_real_world_currency(self.session)
