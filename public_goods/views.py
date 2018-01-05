@@ -14,7 +14,7 @@ class Contribute(Page):
     """Player: Choose how much to contribute"""
 
     form_model = models.Player
-    form_fields = ['consumption', 'savings']
+    form_fields = [ 'savings']
 
     timeout_submission = {'consumption': c(Constants.endowment / 2)}
 

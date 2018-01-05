@@ -66,6 +66,8 @@ class Group(BaseGroup):
     def set_payoffs(self):
         self.total_savings = sum([p.savings for p in self.get_players()]) # C:1 S:4, C:1 S:1, TS:5 SS:5/20 F:
         self.individual_savings_share = self.total_savings / (Constants.players_per_group * Constants.endowment)
+        for p in self.get_players():
+            p.consumption = Constants.endowment-p.savings
         if self.com_goal > 0:
             if self.individual_savings_share >= self.com_goal:
                 for p in self.get_players():
@@ -87,6 +89,6 @@ class Player(BasePlayer):
         min=0, max=Constants.endowment,
         doc="Consumption by each player"
     )
-    savings = models.CurrencyField(min=0, max=Constants.max_savings, doc="Savings by each player")
+    savings = models.CurrencyField(min=0, max=Constants.max_savings, doc="Savings by each player",choices=[c(0), c(2), c(4)])
     financial_reward = models.FloatField(min=0)
     last_savings = models.CurrencyField()

@@ -7,8 +7,9 @@
 
 {% block content %}
 
-    {% formfield player.consumption label="How much do you choose to contribute to your own energy use?" %}
-    {% formfield player.savings label="How much do you choose to contribute to the group energy conservation goal?" %}
+
+    <p>Your endowment is: {{ Constants.endowment }}</p>
+    <p>{% formfield player.savings label="How many points do you choose to contribute to the group energy conservation goal?" %}</p>
 
     {% next_button %}
 
