@@ -27,7 +27,7 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
-    """Players payoff: How much each has earned"""
+    """Players : How much each has earned"""
 
     def vars_for_template(self):
         return {

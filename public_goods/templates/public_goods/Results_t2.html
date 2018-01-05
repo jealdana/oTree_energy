@@ -7,8 +7,13 @@
 
 {% block content %}
 
-    <p>Treatment 2: Thanks for your contribution to the group goal last round! [Include only if met previous goal].</p>
+    <p>Your remaining endowment: </p>
+    <p>Your previous contributions to conservation fund:</p>
+    <p>Remember, contributing to the collective energy conservation goal is important to protect the environment by saving energy from fossil fuels.</p>
+    <p>Total contributions to the conservation fund to date: </td><td>{{ group.total_savings }}</p>
 
-    {% next_button %}
+    <div align="right">
+      {% next_button %}
+    </div>
 
 {% endblock %}

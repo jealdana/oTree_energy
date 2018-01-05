@@ -7,29 +7,24 @@
 
 {% block content %}
 
-    <p>Treatment 1: Thanks for your contribution to the group goal last round! [Include only if met previous goal].</p>
-    <p>Your consumption was {{ player.consumption|c}}.</p>
+
+    <p>Your remaining endowment: </p>
+    <p>Your previous contributions to conservation fund:</p>
     <p> <table class="table-condensed" style="width:500px; margin-top:20px;">
-        <tr><td>You saved:</td><td>{{ player.savings }}</td></tr>
         <tr><td>Other participants saved:</td><td></td></tr>
-        {% for p in player.get_others_in_group %}
-            <tr><td></td><td>{{ p.savings|c }}</td></tr>
+        {% for p in group.get_players %}
+            <tr><td>Participant {{ p.id_in_group }}:</td><td>{{ p.savings }}</td></tr>
         {% endfor %}
 
-        <tr><td>Group Total savings:</td><td>{{ group.total_savings }}</td></tr>
+        <tr><td>Total contributions to the conservation fund to date: </td><td>{{ group.total_savings }}</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
-
-        <tr><td>Total earnings from the project:</td><td>{{ group.individual_savings_share }}</td><td> Fraction of total points collected </td></tr>
-
-        <tr><td colspan="2"><hr/></td></tr>
-
-        <tr><td>Thus in total you earned:</td><td>{{ player.financial_reward }}</td></tr>
-
 
     </table>
     </p>
+    <div align="right">
+      {% next_button %}
+    </div>
 
-    {% next_button %}
 
 {% endblock %}
