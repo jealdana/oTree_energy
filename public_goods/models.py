@@ -42,7 +42,7 @@ class Subsession(BaseSubsession):
 
     def creating_session(self):
         # self.Constants.endowment = self.session.config['endowment']
-        treatments = itertools.cycle(['control', 't1', 't2'])
+        treatments = itertools.cycle(['control', 't1', 't2','t3'])
         for g in self.get_groups():
             g.com_goal = self.session.config['community_goal_decimal']
         if self.round_number == 1:

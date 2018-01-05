@@ -47,6 +47,8 @@ class Results_t2(Page):
     def is_displayed(self):
         if self.participant.vars['treat'] == 't2':
             return True
+        if self.participant.vars['treat'] == 't3':
+            return True
 
 page_sequence = [
     Contribute,
