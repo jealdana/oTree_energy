@@ -5,12 +5,10 @@
     Round {{ player.round_number }}
 {% endblock %}
 
+
 {% block content %}
-
-
-    <p>Your endowment is: {{ Constants.endowment }}</p>
+    <h4>Your endowment is: {{ Constants.endowment }}</h4
     <p>{% formfield player.savings label="How much do you choose to contribute to the group energy conservation goal?" %}</p>
-
     {% next_button %}
 
 {% endblock %}
