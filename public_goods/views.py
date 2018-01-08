@@ -9,15 +9,12 @@ class Introduction(Page):
     body_text = "Introduction text."
     pass
 
-
 class Contribute(Page):
     """Player: Choose how much to contribute"""
 
     form_model = models.Player
     form_fields = [ 'savings']
-
     timeout_submission = {'consumption': c(Constants.endowment / 2)}
-
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -43,6 +40,7 @@ class Results_t1(Page):
     def is_displayed(self):
         if self.participant.vars['treat'] == 't1':
             return True
+
 class Results_t2(Page):
     def is_displayed(self):
         if self.participant.vars['treat'] == 't2':
@@ -54,6 +52,6 @@ page_sequence = [
     Contribute,
     ResultsWaitPage,
     Results_control,
-    Results_t1,
-    Results_t2
+    #Results_t1,
+#    Results_t2
 ]
