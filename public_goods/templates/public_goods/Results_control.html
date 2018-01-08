@@ -5,13 +5,10 @@
     Results
 {% endblock %}
 
-
 {% block content %}
   <div id="chart"></div>
     {% next_button %}
 {% endblock %}
-
-
 
 {% block scripts %}
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -24,7 +21,7 @@
       {% endfor %}
     ]
     let peak = new Peak(data)
-    let myHouse = 2
+    let myHouse = Math.floor(Math.random() * Math.floor(10));
     peak.plot("chart", myHouse, false)
     </script>
 {% endblock %}
