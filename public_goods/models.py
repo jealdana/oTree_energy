@@ -22,6 +22,22 @@ class Constants(BaseConstants):
     max_savings = c(5)
     multiplier = 1
 
+    """ Example of consumption """
+    data  = {
+      "House2":750,
+      "House1":600,
+      "House3":800,
+      "House4":900,
+      "House5":1000,
+      "House6":900,
+      "House7":700,
+      "House8":900,
+      "House9":800,
+      "House10":1000,
+      "House11":700,
+      "House12":600,
+    }
+
 
 class Subsession(BaseSubsession):
 
@@ -56,8 +72,6 @@ class Subsession(BaseSubsession):
             for p in self.get_players():
                 p.treat = p.participant.vars['treat']
 
-
-
 class Group(BaseGroup):
     com_goal = models.FloatField(min=0, max=1)
     total_savings = models.CurrencyField()
@@ -78,10 +92,6 @@ class Group(BaseGroup):
 
 # finacial with group
 # reward group (1 has nothing ,1 treatment any group reward, 1 emotional reward, group savings x3 and distributed equally,)
-
-
-
-
 
 class Player(BasePlayer):
     treat = models.CharField(doc="Treatment of each player")
